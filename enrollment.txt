@@ -1,0 +1,32 @@
+reate TABLE student (
+st_id int PRIMARY KEY,
+s_name varchar(20)
+)
+
+CREATE TABLE courses(
+c_id int PRIMARY key,
+
+c_name varchar(30)
+
+)
+
+CREATE TABLE RegisteredCourses(
+rc_id int PRIMARY KEY,
+st_id int,
+c_id int,
+foreign key(st_id) references student(s_id),
+foreign key(c_id) references courses(c_id)
+)
+
+INSERT INTO student VALUES (1,'ali');
+INSERT INTO student VALUES (2,'asim');
+INSERT INTO student VALUES (3,'bilal');
+select* from student;
+INSERT INTO courses VALUES (1,'C++');
+INSERT INTO courses VALUES (2,'PYTHON');
+
+INSERT INTO RegisteredCourses VALUES (1,1,1);
+INSERT INTO RegisteredCourses VALUES (2,2,1);
+INSERT INTO RegisteredCourses VALUES (3,1,2);
+
+SELECT student.s_name,courses.c_name FROM student INNER JOIN RegisteredCourses ON student.st_id = RegisteredCourses.st_id INNER JOIN courses ON RegisteredCourses.c_id =courses.c_id;
